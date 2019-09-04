@@ -92,27 +92,41 @@ class Blog {
 class Blogs {
     private $conn;
 
+    const USERNAME = "root";
+    const PASSWORD = "";
+
     /**
      * Blogs constructor.
      * @param $conn
      */
     public function __construct()
     {
-        $this->conn = new PDO("");
-        $this->conn->setAttribute();
+        $this->conn = new PDO("mysql:host=localhost", self::USERNAME, self::PASSWORD);
+
+        $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     public function addBlog($blog) {
-        $this->conn->prepare();
+        $sql = "INSERT INTO blogs.blogs(content, title, username) 
+                VALUES('".$blog->getContent()."', '".$blog->getTitle()."', '".$blog->getUsername()."')";
+
+        $this->conn->exec($sql);
 
     }
 
     public function removeBlog($id) {
+        $sql = "DELETE FROM blogs.blogs WHERE id = ".$id;
+        $this->conn->exec($sql
 
+
+        );
     }
 
-    public function updateBlog($blog) {
-        
+    public function updateBlog($id, $blog) {
+        $sql = "UPDATE blogs.blogs set content = '".$blog->content.
+            "', title = '".$blog->title."', username = '".$blog->username.
+            "', creation_date = '".$blog->creationDate."' WHERE id = ".$id;
+        $this->conn->exec($sql);
     }
 
     public function getBlog($id) {
@@ -121,7 +135,20 @@ class Blogs {
 
     function __destruct() {
         $this->conn = null;
+
     }
 
 
 }
+
+
+$blogs = new Blogs();
+$blog = new Blog(
+    "le contenu de mon blog",
+    "le titre de mon blog",
+    new DateTime(),
+    "yassine"
+);
+
+$blogs = new Blogs();
+$blogs->addBlog($blog);
