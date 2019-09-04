@@ -1,0 +1,5 @@
+* Compléter la page login.php afin d'utiliser la classe Blogs pour la connexion
+* Compléter la page signon.php afin d'utiliser la classe Blogs pour l'ajout d'un utilisateur
+* Compléter la page home.php afin d'afficher la liste des blogs en utilisant la classe Blogs
+* Ajouter une image de background à la classe Blog et la possibilité d'uploader l'image lors de la création d'un blog
+* Ajouter 2 icônes à la card relative au blog afin de donner la possibilité à l'utilisateur pour supprimer et modifier un blog
